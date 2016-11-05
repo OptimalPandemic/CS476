@@ -1,12 +1,13 @@
 import sys
 import math
+import random
 from turtle import Turtle, mainloop
 
 
-class Drawer:
+class Drawer(object):
 
     def __init__(self):
-        super().__init__()
+        super(Drawer, self).__init__()
         self.t = Turtle()
         self.t.hideturtle()
         self.screen = self.t.getscreen()
@@ -43,7 +44,7 @@ class Drawer:
 
     # This function continues execution after set_a
     def set_b(self, x, y):
-        self.t.fillcolor("red")
+        self.t.fillcolor(choose_color())
         self.b_x = x
         self.b_y = y
         print(x, y)
@@ -59,7 +60,7 @@ class Drawer:
         self.t.penup()
         self.t.goto(self.a_x, self.a_y + 1.23 * self.radius)
         self.t.pendown()
-        self.t.fillcolor("green")
+        self.t.fillcolor(choose_color())
         self.t.begin_fill()
         self.t.right(36)  # half a full angle
         self.t.forward(1.452 * self.radius)
@@ -70,7 +71,7 @@ class Drawer:
         self.t.end_fill()
         self.t.penup()
         self.t.goto(self.a_x, self.a_y + self.radius)
-        self.t.fillcolor("black")
+        self.t.fillcolor(choose_color())
         self.t.begin_fill()
         for i in range(5):
             self.t.right(72)
@@ -84,12 +85,9 @@ class Drawer:
         mainloop()
 
 
-def draw_polygon(turtle, side_length, num_sides):
-    turn_angle = 360 / num_sides
-    for i in range(num_sides):
-        turtle.left(turn_angle)
-        turtle.forward(side_length)
-# def select_color():
+def choose_color():
+    colors = {"red", "green", "blue", "yellow", "white", "pink", "brown", "purple", "gray", "orange"}
+    return random.choice(tuple(colors))
 
 
 def draw():
